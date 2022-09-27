@@ -2,7 +2,7 @@ import './App.css';
 import { useState, useEffect } from 'react';
 
 function App() {
-  const [data, setData] = useState('');
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const key = 'b2auhmGVt8lJw7s53pnOsTTPrRcowmkWZo1E9PDbUzMtNeflm2';
@@ -18,7 +18,7 @@ function App() {
       .then(data => {
         console.log('token', data);
 
-        return fetch('https://api.petfinder.com/v2/animals', {
+        return fetch('https://api.petfinder.com/v2/animals?limit=100', {
           headers: {
             'Authorization': data.token_type + ' ' + data .access_token,
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -26,15 +26,24 @@ function App() {
         });
       }).then(res => res.json())
         .then(data => {
-          console.log(data.animals);
+          console.log(data.animals[0]);
+          setData(data.animals);
         })
   }, [])
-
   return (
     <div className="App">
-      <header className="App-header">
-        <p>{!data ? "Loading..." : data}</p>
-      </header>
+      {data.map(pet => {
+        const link = pet['primary_photo_cropped']['full'];
+        const url = pet.url;
+        return (
+          <div>
+            <div>{pet.name}</div>
+            <div>{pet.age}</div>
+            <div><a href={url} target="_blank">Click here</a></div>
+            <img src={link} alt='animal'/>)
+          </div>
+        )
+      })}
     </div>
   );
 };
