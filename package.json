@@ -1,0 +1,24 @@
+{
+  "name": "forever-home",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harveybnguyen/forever-home.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harveybnguyen/forever-home/issues"
+  },
+  "homepage": "https://github.com/harveybnguyen/forever-home#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
